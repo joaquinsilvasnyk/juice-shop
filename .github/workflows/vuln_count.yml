@@ -15,7 +15,7 @@ jobs:
       - uses: snyk/actions/setup@master
       - name: Snyk SCA Test
         run: |
-          echo "vuln_count=$(snyk test --json | jq '.uniqueCount')" >> %GITHUB_ENV
+          echo "vuln_count=$(snyk test --json | jq '.uniqueCount')" >> $GITHUB_ENV
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           
