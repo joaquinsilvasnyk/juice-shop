@@ -14,8 +14,6 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env: 
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:      
@@ -24,6 +22,9 @@ jobs:
       - name: Snyk Code Test
         run: snyk code test --sarif > snyk-sarif2.json
         continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      # Upload results    
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:
