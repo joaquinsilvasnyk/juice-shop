@@ -16,6 +16,8 @@
 
 [![Snyk Code Test](https://github.com/hezro/juice-shop/actions/workflows/snyk-code-test.yml/badge.svg)](https://github.com/hezro/juice-shop/actions/workflows/snyk-code-test.yml)
 
+[![Known Vulnerabilities](https://snyk.io/test/github/hezro/juice-shop/badge.svg?style=flat-square)](https://snyk.io/test/github/hezro/juice-shop)
+
 > [The most trustworthy online shop out there.](https://twitter.com/dschadow/status/706781693504589824)
 > ([@dschadow](https://github.com/dschadow)) —
 > [The best juice shop on the whole internet!](https://twitter.com/shehackspurple/status/907335357775085568)
