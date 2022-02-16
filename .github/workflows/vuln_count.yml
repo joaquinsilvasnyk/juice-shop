@@ -16,6 +16,7 @@ jobs:
       - name: Snyk Test
         run: |
           echo "::set-output name=vulncount::$(snyk test --json | jq '.uniqueCount')"
+          snyk test --json | jq '.uniqueCount'
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
