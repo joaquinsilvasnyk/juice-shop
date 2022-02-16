@@ -22,6 +22,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           
       - name: Vuln Count badge
+        uses: RubbaBoy/BYOB@v1.2.1
         with:
           NAME: vulncount
           LABEL: 'Vulnerabilities'
