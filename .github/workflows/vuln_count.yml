@@ -15,6 +15,7 @@ jobs:
       - uses: snyk/actions/setup@master
       - name: Snyk Test
         run: |
+          snyk test --json
           echo "::set-output name=vulncount::$(snyk test --json | jq '.uniqueCount')"
           snyk test --json | jq '.uniqueCount'
         continue-on-error: true
