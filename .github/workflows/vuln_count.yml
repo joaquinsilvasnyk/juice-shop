@@ -1,0 +1,24 @@
+name: Snyk Vuln Count
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  sca-scan:
+    runs-on: ubuntu-latest
+    name: Snyk SCA Scan
+    steps:      
+      - uses: actions/checkout@v2
+      - uses: snyk/actions/setup@master
+      - name: Snyk SCA Test
+        run: |
+          echo "vuln_count=$(snyk test --json | jq '.uniqueCount')" >> %GITHUB_ENV
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          
+      - name: Test env value
+        run: |
+          echo "${{ env.vulncount }}"
