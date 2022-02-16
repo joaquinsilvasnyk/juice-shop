@@ -9,15 +9,13 @@ on:
 jobs:
   sca-scan:
     runs-on: ubuntu-latest
-    name: Snyk SCA Scan
+    name: Get vuln count
     steps:      
       - uses: actions/checkout@v2
       - uses: snyk/actions/setup@master
       - name: Snyk SCA Test
         run: |
-          $vuln-count=(snyk test --json | jq '.uniqueCount')
-          echo $vuln-count
-          echo "vulncount=$($vuln-count)" >> $GITHUB_ENV
+          echo ::set-env name=vulncount::$(snyk test --json | jq '.uniqueCount')
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
