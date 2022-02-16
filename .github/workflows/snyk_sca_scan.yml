@@ -1,0 +1,18 @@
+name: Snyk SCA Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  sca-scan:
+    runs-on: ubuntu-latest
+    name: Snyk SCA Scan
+    steps:      
+      - uses: actions/checkout@v2
+      - uses: snyk/actions/setup@master
+      - name: Snyk SCA Test
+        run: snyk test --severity-threshold=medium --fail-on=upgradeable
+        continue-on-error: false
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
