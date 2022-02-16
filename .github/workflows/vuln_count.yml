@@ -15,15 +15,15 @@ jobs:
       - uses: snyk/actions/setup@master
       - name: Snyk Test
         run: |
-          npm install
-          snyk test --json
+          npm install          
           echo "::set-output name=vulncount::$(snyk test --json | jq '.uniqueCount')"
-          snyk test --json | jq '.uniqueCount'
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           
-      - name: Test env value
-        run: |
-          echo "${{ env.vulncount }}"
-          echo ${{ env.vulncount }}
+      - name: Vuln Count badge
+        with:
+          NAME: vulncount
+          LABEL: 'Vulnerabilities'
+          STATUS: ${{ env.vulncount }}
+          COLOR: red
