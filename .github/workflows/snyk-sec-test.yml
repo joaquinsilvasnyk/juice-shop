@@ -35,5 +35,5 @@ jobs:
         continue-on-error: true
         
       - name: Run Snyk Monitor
-        run: snyk monitor
+        run: snyk monitor --all-projects
         continue-on-error: true
