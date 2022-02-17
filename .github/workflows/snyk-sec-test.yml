@@ -22,8 +22,8 @@ jobs:
          ls
          chmod +x ./snyk
          ls | grep snyk
-         ./snyk ${SNYK_TOKEN}          
+         snyk ${SNYK_TOKEN}          
       - name: Run Snyk
         run: |
-          ./snyk code test      
+          snyk code test      
         continue-on-error: true
