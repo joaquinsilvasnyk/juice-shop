@@ -21,21 +21,19 @@ jobs:
           mv ./snyk /usr/local/bin/
           
       - name: Authenticate Snyk
-        run: |
-          snyk auth ${SNYK_TOKEN}
+        run: snyk auth ${SNYK_TOKEN}
           
       - name: Run Snyk Code
-        run: |
-          snyk code test      
+        run: snyk code test      
         continue-on-error: true
         
+      - name: Install packages
+        run: npm install --loglevel=error
+        
       - name: Run Snyk Test
-        run: |
-          npm install
-          snyk test   
+        run: snyk test   
         continue-on-error: true
         
       - name: Run Snyk Monitor
-        run: |
-          snyk monitor
+        run: snyk monitor
         continue-on-error: true
