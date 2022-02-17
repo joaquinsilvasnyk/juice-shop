@@ -18,6 +18,7 @@ jobs:
         run: |
           wget -O snyk https://static.snyk.io/cli/latest/snyk-linux
           chmod +x ./snyk
+          ls | grep snyk
           snyk auth ${SNYK_TOKEN}
       - name: Run Snyk
         run: |
