@@ -9,7 +9,7 @@ on:
 jobs:
   snyk-pipeline:
     runs-on: ubuntu-latest
-    name: Snyk SAST
+    name: Snyk CLI Scans
     env:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     steps:      
