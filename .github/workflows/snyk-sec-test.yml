@@ -31,7 +31,7 @@ jobs:
         run: npm install --loglevel=error
         
       - name: Run Snyk Test
-        run: snyk test   
+        run: snyk test --all-projects
         continue-on-error: true
         
       - name: Run Snyk Monitor
