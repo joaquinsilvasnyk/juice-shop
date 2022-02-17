@@ -22,7 +22,7 @@ jobs:
          chmod +x ./snyk
          mv ./snyk /usr/local/bin/
          snyk auth ${SNYK_TOKEN}          
-      - name: Run Snyk
+      - name: Run Snyk Code
         run: |
           snyk code test      
         continue-on-error: true
