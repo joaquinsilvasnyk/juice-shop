@@ -17,11 +17,11 @@ jobs:
       - name: Download Snyk
         run: |
           wget -O snyk https://static.snyk.io/cli/latest/snyk-linux
+          chmod +x ./snyk
+          mv ./snyk /usr/local/bin/
       - name: Auth Snyk
-        run: |         
-         chmod +x ./snyk
-         mv ./snyk /usr/local/bin/
-         snyk auth ${SNYK_TOKEN}          
+        run: |
+          snyk auth ${SNYK_TOKEN}          
       - name: Run Snyk Code
         run: |
           snyk code test      
