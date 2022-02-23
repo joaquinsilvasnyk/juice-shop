@@ -1,0 +1,28 @@
+name: Test scan
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  snyk-pipeline:
+    name: Test env
+    runs-on: ubuntu-latest
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: test event repo name 
+        run: echo ${{ github.event.repository.name }}
+        
+      - name: test event push repo name 
+        run: echo ${{ github.event.pull_request.base.repo.name }}
+        
+      - name: test github context
+        run: echo "$GITHUB_CONTEXT"
