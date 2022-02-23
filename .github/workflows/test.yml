@@ -22,7 +22,7 @@ jobs:
         run: echo ${{ github.event.repository.name }}
         
       - name: test event push repo name 
-        run: echo ${{ github.event.pull_request.base.repo.name }}
+        run: echo ${{ github.event.push.base.repo.name }}
         
       - name: test github context
         run: echo "$GITHUB_CONTEXT"
