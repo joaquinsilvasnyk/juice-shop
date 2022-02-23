@@ -13,6 +13,12 @@
 ![GitHub stars](https://img.shields.io/github/stars/juice-shop/juice-shop.svg?label=GitHub%20%E2%98%85&style=flat)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
+
+[![Snyk Code Test](https://github.com/hezro/juice-shop/actions/workflows/snyk-code-test.yml/badge.svg)](https://github.com/hezro/juice-shop/actions/workflows/snyk-code-test.yml)
+
+[![Known Vulnerabilities](https://snyk.io/test/github/hezro/juice-shop/badge.svg?style=flat-square)](https://snyk.io/test/github/hezro/juice-shop)
+
+
 > [The most trustworthy online shop out there.](https://twitter.com/dschadow/status/706781693504589824)
 > ([@dschadow](https://github.com/dschadow)) —
 > [The best juice shop on the whole internet!](https://twitter.com/shehackspurple/status/907335357775085568)
