@@ -12,6 +12,7 @@ jobs:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      TEST_REPO_NAME: hezro/${{ github.event.repository.name }}:latest
 
 
     steps:
@@ -26,3 +27,6 @@ jobs:
         
       - name: test github event repo name
         run: echo ${{ github.event.repository.name }}
+        
+      - name: test repo name
+        run: echo ${TEST_REPO_NAME}
