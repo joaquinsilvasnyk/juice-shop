@@ -6,7 +6,7 @@ RUN npm install --production --unsafe-perm --loglevel=error
 RUN npm dedupe
 RUN rm -rf frontend/node_modules
 
-FROM node:12.0.0
+FROM node:14.1.0
 ARG BUILD_DATE
 ARG VCS_REF
 LABEL maintainer="Bjoern Kimminich <bjoern.kimminich@owasp.org>" \
@@ -33,6 +33,7 @@ RUN mkdir logs && \
     chown -R juicer logs && \
     chgrp -R 0 ftp/ frontend/dist/ logs/ data/ i18n/ && \
     chmod -R g=u ftp/ frontend/dist/ logs/ data/ i18n/
+RUN chmod +x ./startup.sh
 USER 1001
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["./startup.sh"]
