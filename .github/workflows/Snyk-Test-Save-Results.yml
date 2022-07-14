@@ -1,0 +1,43 @@
+name: Snyk SCA and SAST Scans
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  snyk-pipeline:
+    runs-on: ubuntu-latest
+    name: Snyk SCA and SAST Scans
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    steps:      
+      - uses: actions/checkout@v2
+      - name: Install packages for JuiceShop
+        run: npm install --loglevel=error
+
+      - name: Download Snyk and authenticate
+        run: |
+         sudo npm install -g snyk
+         sudo npm install -g snyk-to-html
+         snyk auth ${SNYK_TOKEN}
+
+      - name: Run Snyk SCA and SAST Tests
+        run: |
+           snyk test --json | snyk-to-html -o snyk_sca_results.html || true
+           snyk code test --sarif  > snyk_sast_results.sarif || true
+           snyk-to-html -i snyk_sast_results.sarif -o snyk_sast_results.html || true
+        continue-on-error: true
+        
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+        # Path to SARIF file relative to the root of the repository
+          sarif_file: snyk_sast_results.json
+
+      - name: Archive Snyk Scan Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: Archive Snyk Scan Results
+          path: |
+            snyk_sast_results.html
+            snyk_sca_results.html
