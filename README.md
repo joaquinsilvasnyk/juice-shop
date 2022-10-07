@@ -112,7 +112,7 @@ For a detailed introduction, full list of features and architecture overview ple
 
 > Each packaged distribution includes some binaries for `sqlite3` and
 > `libxmljs` bound to the OS and node.js version which `npm install` was
-> executed on.
+> executed on..
 
 ### Docker Container
 
