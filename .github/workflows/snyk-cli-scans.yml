@@ -18,6 +18,9 @@ jobs:
         run: |
           wget -O snyk https://static.snyk.io/cli/latest/snyk-linux
           chmod +x ./snyk
+          echo pwd
+          echo ${{ github.workspace }}
+          ls ${{ github.workspace }}
           mv ./snyk /usr/local/bin/
           
       - name: Authenticate Snyk
