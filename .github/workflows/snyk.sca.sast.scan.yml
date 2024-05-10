@@ -7,29 +7,31 @@ on:
     branches: [ main ]
     
 jobs:
-   synk-scan:
-     name: snyk ghas scan
-     runs-on: ubuntu-latest
-     env:
-       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-       steps:
-         - uses: actions/checkout@v2
-         - name: Install packages for JuiceShop
-           run: npm install --loglevel=error
+  snyk-pipeline:
+    name: snyk ghas scan
+    runs-on: ubuntu-latest    
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    steps:      
+      - uses: actions/checkout@v2
+      - name: Install packages for JuiceShop
+        run: | npm install --loglevel=error
          
-         - name: Setup Snyk + snyk-to-html
-           run: |
-             npm install snyk -g
-             npm install snyk-to-html -g
-             snyk auth ${{secrets.SNYK_TOKEN}}
-         - name: Snyk Open Source # For testing and failing please add snyk test before snyk monitor
-           run: |
-             snyk monitor 
+      - name: Setup Snyk + snyk-to-html
+        run: |
+          npm install snyk -g
+          npm install snyk-to-html -g
+          snyk auth ${{secrets.SNYK_TOKEN}}
+      
+      - name: Snyk Open Source # For testing and failing please add snyk test before snyk monitor
+        run: |
+          snyk monitor 
 # For a list of additional available flags/options see: https://docs.snyk.io/snyk-cli/commands
-         - name: Snyk Code # Remove || true to fail if there are vulnerabilities
-           run: |
-             snyk code test || true
+      
+      - name: Snyk Code # Remove || true to fail if there are vulnerabilities
+        run: |
+          snyk code test || true
              
-         - name: Snyk SCA # Remove || true to fail if there are vulnerabilities
-           run: |
-             snyk test || true
+      - name: Snyk SCA # Remove || true to fail if there are vulnerabilities
+        run: |
+          snyk test || true
