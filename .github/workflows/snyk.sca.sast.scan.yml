@@ -14,8 +14,8 @@ jobs:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     steps:      
       - uses: actions/checkout@v2
-      - name: Install packages for JuiceShop
-        #run: |
+        # name: Install packages for JuiceShop
+        # run: |
         #  npm install --loglevel=error
          
       - name: Setup Snyk + snyk-to-html
